@@ -1,6 +1,8 @@
 class Game {
 
-    constructor() {
+    constructor(host) {
+	this.host = host;
+	this.others = [];
 	this.plays = 0;
 	this.wins = 0;
     }
