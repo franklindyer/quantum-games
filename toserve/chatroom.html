@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    let sock = null;
+
+    function showChatMsg(data) {
+	console.log("showChatMsg has been called.");
+	let listEl = document.createElement('li');
+	listEl.appendChild(document.createTextNode(data.message));
+	console.log(data.message);
+	document.getElementById("game-messages").appendChild(listEl);
+    }
+
+    let serverMessageHandler = showChatMsg;
+  </script>    
+</head>
+
+<body>
+
+<h1>Chatroom game</h1>
+
+<button type="button" class="pregame" onclick="sock = newGame('chatroom')">New game</button><br/>
+
+<button type="button" class="pregame" onclick="sock = joinGame(document.getElementById('gameidField').value)">Join game</button>
+<input type="text" id="gameidField" class="pregame" placeholder="Game ID"></input>
+
+<ul id = "server-messages">
+</ul>
+
+<button type="button" class="ingame" onclick="sendGameMessage(sock, {message : document.getElementById('chat-content').value})">Send</button>
+<input type="text" id="chat-content" class="ingame" placeholder="Your message"></input>
+
+<ul id = "game-messages">
+</ul>
+
+<script src="/client.js" type="text/javascript"></script>
+
+</body>
+</html>

@@ -10,10 +10,9 @@ class Player {
 
 class SocketPlayer extends Player {
 
-    constructor(sock, game) {
+    constructor(sock) {
 	super();
 	this.sock = sock;
-	this.game = game;
 	this.id = Math.floor(Math.random() * 999999);
     }
 

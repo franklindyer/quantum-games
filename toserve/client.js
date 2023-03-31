@@ -1,4 +1,5 @@
 function showServerMsg(msg) {
+    console.log("Call to showServerMsg.");
     const msgNode = document.createElement('li');
     const msgText = document.createTextNode(msg);
     msgNode.appendChild(msgText);
@@ -8,8 +9,12 @@ function showServerMsg(msg) {
 function handleServerMsg(evt) {
     console.log("Got a server msg.");
     var msg = JSON.parse(evt.data);
+    console.log(msg);
     if (msg.type == "info") {
-	    showServerMsg(msg.text);
+	showServerMsg(msg.text);
+    } else if (msg.type == "ingame") {
+	console.log("The message is an ingame server message.");
+	serverMessageHandler(msg.data);
     }
 }
 
@@ -26,8 +31,32 @@ function newGame(gameStr) {
 	Array.from(document.getElementsByClassName("pregame")).forEach(
 	    elt => { elt.setAttribute("disabled", true); }
 	);
-    }
+    };
     return ws;
+}
+
+function joinGame(gameID) {
+    const ws = new WebSocket('ws://localhost:8081');
+    ws.onmessage = handleServerMsg;
+    var msg = {
+	type: "joingame",
+	gamenum: gameID
+    };
+    ws.onopen = function(e) {
+	ws.send(JSON.stringify(msg));
+	Array.from(document.getElementsByClassName("pregame")).forEach(
+	    elt => { elt.setAttribute("disabled", true); }
+	);
+    };
+    return ws;
+}
+
+function sendGameMessage(ws, data) {
+    var msg = {
+	type: "ingame",
+	data: data
+    }
+    ws.send(JSON.stringify(msg));
 }
 
 showServerMsg("No server messages yet.");

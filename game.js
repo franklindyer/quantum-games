@@ -7,11 +7,16 @@ class Game {
 	this.wins = 0;
     }
 
+    // Return true iff the game is now full
+    addplayer(player) {}
+    
     reset() {}
 
-    getmove(playerNum) {}
+    // Expects the data argument to be JSON
+    handlemsg(data) {}
 
-    send(playerNum, msg) {}
+    // Expects the data argument to be JSON
+    send(playerNum, data) {}
     
     rungame() {}
     
