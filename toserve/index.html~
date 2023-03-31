@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var socket=io()
+      // make connection with server from user side
+      socket.on('connect', function(){
+	  console.log('Connected to Server')
+      });
+    </script>
+  </head>
+<body>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+
+</body>
+</html>
