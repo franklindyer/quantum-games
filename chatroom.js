@@ -23,7 +23,7 @@ class Chatroom extends Game {
 	if (n == 1) this.others[0].sock.send(JSON.stringify(msg));
     }
 
-    handle(data) {
+    handlemsg(sock, data) {
 	console.log(data.message);
 	this.send(0, { message: "Someone said: " + data.message });
 	this.send(1, { message: "Someone said: " + data.message }); 

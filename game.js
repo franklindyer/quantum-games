@@ -13,7 +13,7 @@ class Game {
     reset() {}
 
     // Expects the data argument to be JSON
-    handlemsg(data) {}
+    handlemsg(sock, data) {}
 
     // Expects the data argument to be JSON
     send(playerNum, data) {}

@@ -73,7 +73,7 @@ server.on('connection', function(sock) {
 	} else if (msg.type == "ingame") { // Handle in-game interaction
 	    if (game == null) return;
 	    if (gamesActive.includes(game)) {
-		game.handle(msg.data);
+		game.handlemsg(sock, msg.data);
 	    }
 	}
     };
